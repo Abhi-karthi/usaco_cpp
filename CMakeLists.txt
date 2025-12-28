@@ -13,4 +13,8 @@ add_executable(usaco_cpp milkmix.cpp
         drought.h
         outofplace.cpp
         outofplace.h
+        guess.cpp
+        guess.h
+        taming.cpp
+        taming.h
 )
