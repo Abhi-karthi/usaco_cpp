@@ -17,4 +17,10 @@ add_executable(usaco_cpp milkmix.cpp
         guess.h
         taming.cpp
         taming.h
+        angry.cpp
+        angry.h
+        mooingtime.cpp
+        mooingtime.h
+        majorityopinion.cpp
+        majorityopinion.h
 )
