@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-void solve(int n, std::vector<int> current_count_list) {
+void solve(int t, std::vector<int> current_count_list) {
     bool last_counted_valid = false;
     int last_counted = -1;
     int last_counted_index_distance = -1;

@@ -23,4 +23,8 @@ add_executable(usaco_cpp milkmix.cpp
         mooingtime.h
         majorityopinion.cpp
         majorityopinion.h
+        palindromegame.cpp
+        palindromegame.h
+        milkexchange.cpp
+        milkexchange.h
 )
