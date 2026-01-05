@@ -27,4 +27,12 @@ add_executable(usaco_cpp milkmix.cpp
         palindromegame.h
         milkexchange.cpp
         milkexchange.h
+        leaders.cpp
+        leaders.h
+        aircownditioningtwo.cpp
+        aircownditioningtwo.h
+        shell.cpp
+        shell.h
+        sleepy.cpp
+        sleepy.h
 )
