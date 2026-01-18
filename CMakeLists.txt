@@ -35,4 +35,21 @@ add_executable(usaco_cpp milkmix.cpp
         shell.h
         sleepy.cpp
         sleepy.h
+        billboard.cpp
+        billboard.h
+        shuffle.cpp
+        shuffle.h
+        measurement.cpp
+        measurement.h
+        bits.cpp
+        bits.h
+        problem1.cpp
+        problem1.h
+        problem2.cpp
+        problem2.h
+        problem3.cpp
+        problem3.h
+        reflection.cpp
+        reflection.h
+        astral_superposition.cpp
 )
