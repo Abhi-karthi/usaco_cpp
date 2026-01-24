@@ -52,4 +52,18 @@ add_executable(usaco_cpp milkmix.cpp
         reflection.cpp
         reflection.h
         astral_superposition.cpp
+        cannonball.cpp
+        cannonball.h
+        mooing_time_2.cpp
+        mooing_time_2.h
+        cowntact_tracing_2.cpp
+        cowntact_tracing_2.h
+        printing_sequences.cpp
+        printing_sequences.h
+        mowing_the_field.cpp
+        mowing_the_field.h
+        censor.cpp
+        censor.h
+        blocks.cpp
+        blocks.h
 )
