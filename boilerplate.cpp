@@ -1,10 +1,6 @@
 #include <iostream>
 using namespace std;
 
-void solve(int n) {
-    cout << n << "\n";
-}
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -13,8 +9,13 @@ int main() {
     // freopen("problemname.out", "w", stdout);
 
     int n;
-    cin >> n;
-    solve(n);
+    std::vector<int> problem;
+    for (int i = 0; i < problem.size(); i++) {
+        if (n % 2== 1) {
+            problem.push_back(n);
+        }
+        
+    }
 
     return 0;
 }
