@@ -4,7 +4,7 @@
 using namespace std;
 
 vector<pair<int, int>> adjacent_points(const pair<int, int>& point) {
-    vector<pair<int, int>> points;
+    vector<pair<int, int>> points;;
     if (point.first == 0) {
         points.emplace_back(point.first+1, point.second);
     } else if (point.first == 1000) {
@@ -28,7 +28,7 @@ vector<pair<int, int>> adjacent_points(const pair<int, int>& point) {
 
 int check_around(int grid[1001][1001], const pair<int, int>& point) {
     int count = 0;
-
+    if (grid[point.first][point.second] == 0) return 0;
     for (const auto i : adjacent_points(point)) {
         if (grid[i.first][i.second] == 1) count++;
     }
@@ -48,7 +48,7 @@ int main() {
     }
 
     int count = 0;
-    int grid[1001][1001];
+    int grid[1001][1001] = {0};
     for (auto i : points) {
         int adj_count = 0;
         for (const auto& x : adjacent_points(i)) {
