@@ -1,21 +1,25 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
+#include <utility>
+
 using namespace std;
 
-void solve(int n, std::vector<int> x_values, std::vector<int> y_values) {
-    long long max_distance = -1;
-    for (int i = 0; i < n; i++) {
-        for (int x = 0; x < n; x++) {
-            if (x == i) {
-                continue;
-            }
-            if (static_cast<long long>(std::pow(y_values.at(x) - y_values.at(i), 2) + std::pow(x_values.at(x) - x_values.at(i), 2)) > max_distance) {
-                max_distance = static_cast<long long>(std::pow((y_values.at(x) - y_values.at(i)), 2) + std::pow(x_values.at(x) - x_values.at(i), 2));
+int calc(const  pair<int, int>& point1, const pair<int, int>& point2) {
+    return (point1.first - point2.first)*(point1.first - point2.first) + (point1.second- point2.second)*(point1.second - point2.second);
+}
+
+void solve(const vector<pair<int, int>>& points) {
+    int maximum_distance = -1;
+    for (int i = 0; i < points.size(); i++) {
+        for (int x = i + 1; x < points.size(); x++) {
+            const int distance = calc(points[i], points[x]);
+            if (distance > maximum_distance) {
+                maximum_distance = distance;
             }
         }
     }
-    cout << max_distance << "\n";
+
+    cout << maximum_distance << "\n";
 }
 
 int main() {
@@ -23,21 +27,18 @@ int main() {
     cin.tie(NULL);
 
     int n;
-    std::vector<int> x_values;
-    std::vector<int> y_values;
     cin >> n;
+
+    vector<pair<int, int>> points(n);
+
     for (int i = 0; i < n; i++) {
-        int curr_x_val;
-        cin >> curr_x_val;
-        x_values.push_back(curr_x_val);
+        cin >> points[i].first;
     }
     for (int i = 0; i < n; i++) {
-        int curr_y_val;
-        cin >> curr_y_val;
-        y_values.push_back(curr_y_val);
+        cin >> points[i].second;
     }
 
-    solve(n, x_values, y_values);
+    solve(points);
 
     return 0;
 }

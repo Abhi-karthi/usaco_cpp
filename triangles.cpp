@@ -1,51 +1,52 @@
 #include <iostream>
 #include <utility>
 #include <vector>
+#include <cmath>
+
 using namespace std;
-
-void solve(int n, std::vector<std::pair<int, int> > points) {
-    int max_area = -1;
-    for (int i = 0; i < n; i++) {
-        for (int x = 1; x < n; x++) {
-            for (int w = 2; w < n; w++) {
-                if (i != x && x != w && w != i) {
-                    int maximum;
-                    if (points.at(i).second == points.at(x).second && points.at(w).first == points.at(x).first) {
-                        maximum = (points.at(w).second - points.at(x).second) * (points.at(x).first - points.at(i).first);
-                    } else if (points.at(x).second == points.at(i).second && points.at(w).first == points.at(i).first) {
-                        maximum = (points.at(w).second - points.at(i).second) * (points.at(i).first - points.at(x).first);
-                    } else if (points.at(w).second == points.at(x).second && points.at(i).first == points.at(x).first) {
-                    } else if (points.at(w).second == points.at(i).second && points.at(x).first == points.at(i).first) {
-
-                    } else if (points.at(i).second == points.at(w).second && points.at(x).first == points.at(w).first) {
-
-                    } else if (points.at(x).second == points.at(w).second && points.at(i).first == points.at(w).first) {
-
-                    }
-                }
-            }
-        }
-    }
-    cout << max_area << "\n";
-}
 
 int main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(nullptr);
 
     freopen("triangles.in", "r", stdin);
     freopen("triangles.out", "w", stdout);
 
     int n;
     cin >> n;
-    std::vector<std::pair<int, int> > points;
+
+    vector<pair<int, int>> points(n);
+
     for (int i = 0; i < n; i++) {
-        int x, y;
-        cin >> x >> y;
-        points.push_back({x, y});
+        cin >> points[i].first >> points[i].second;
     }
 
-    solve(n, points);
+    int max_area = -1;
+    for (pair<int, int> i : points) {
+        vector<pair<int, int>> possible_y;
+        vector<pair<int, int>> possible_x;
+
+        for (auto x : points) {
+            if (!(x.first == i.first && x.second == i.second)) {
+                if (x.first == i.first) {
+                    possible_y.push_back(x);
+                } else if (x.second == i.second) {
+                    possible_x.push_back(x);
+                }
+            }
+        }
+
+        for (auto x : possible_x) {
+            for (auto y : possible_y) {
+                int x_dist = abs(x.first - i.first);
+                int y_dist = abs(y.second - i.second);
+                int area = x_dist * y_dist;
+                if (area > max_area) max_area = area;
+            }
+        }
+    }
+
+    cout << max_area << "\n";
 
     return 0;
 }

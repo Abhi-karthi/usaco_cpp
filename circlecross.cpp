@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <vector>
 #include <numeric>
 using namespace std;
@@ -20,8 +20,8 @@ void solve(string main_string) {
             }
             // cout << "vector1: " << vector1.at(0) << " " << vector1.at(1) << "\n";
             // cout << "vector2: " << vector2.at(0) << " " << vector2.at(1) << "\n";
-            // cout << "validity: " << (vector1.at(0) < vector2.at(0) && vector1.at(1) > vector2.at(0) && vector1.at(1) < vector2.at(1)) << "\n";
-            if ((vector1.at(0) < vector2.at(0) && vector1.at(1) > vector2.at(0) && vector1.at(1) < vector2.at(1)) || (vector2.at(0) < vector1.at(0) && vector2.at(1) > vector1.at(0) && vector2.at(1) < vector1.at(1))) {
+                // cout << "validity: " << (vector1.at(0) < vector2.at(0) && vector1.at(1) > vector2.at(0) && vector1.at(1) < vector2.at(1)) << "\n";
+                if ((vector1.at(0) < vector2.at(0) && vector1.at(1) > vector2.at(0) && vector1.at(1) < vector2.at(1)) || (vector2.at(0) < vector1.at(0) && vector2.at(1) > vector1.at(0) && vector2.at(1) < vector1.at(1))) {
                 count++;
             }
         }
