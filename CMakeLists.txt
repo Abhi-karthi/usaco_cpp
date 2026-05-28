@@ -25,4 +25,6 @@ add_executable(usaco_cpp milkmix.cpp
         cowvid19.h
         usacow.cpp
         usacow.h
+        cownomics.cpp
+        cownomics.h
 )
