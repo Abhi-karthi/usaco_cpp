@@ -1,35 +1,9 @@
- #include <iostream>
+#include <iostream>
 #include <vector>
-#include <numeric>
-using namespace std;
+#include <string>
+#include <utility>
 
-void solve(string main_string) {
-    std::vector<char> alphabet(26);
-    std::iota(alphabet.begin(), alphabet.end(), 'A');
-    int count = 0;
-    for (int i = 0; i < 26; i++) {
-        for (int x = i + 1; x < 26; x++) {
-            if (i == x) continue;
-            std::vector<int> vector1;
-            std::vector<int> vector2;
-            for (int v = 0; v < 52; v++) {
-                if (main_string.at(v) == alphabet.at(i)) vector1.push_back(v);
-            }
-            for (int v = 0; v < 52; v++) {
-                if (main_string.at(v) == alphabet.at(x)) vector2.push_back(v);
-            }
-            // cout << "vector1: " << vector1.at(0) << " " << vector1.at(1) << "\n";
-            // cout << "vector2: " << vector2.at(0) << " " << vector2.at(1) << "\n";
-                // cout << "validity: " << (vector1.at(0) < vector2.at(0) && vector1.at(1) > vector2.at(0) && vector1.at(1) < vector2.at(1)) << "\n";
-                if ((vector1.at(0) < vector2.at(0) && vector1.at(1) > vector2.at(0) && vector1.at(1) < vector2.at(1)) || (vector2.at(0) < vector1.at(0) && vector2.at(1) > vector1.at(0) && vector2.at(1) < vector1.at(1))) {
-                count++;
-            }
-        }
-    }
-    // count /= 2;
-    // count++;
-    cout << count << "\n";
-}
+using namespace std;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -38,10 +12,49 @@ int main() {
     freopen("circlecross.in", "r", stdin);
     freopen("circlecross.out", "w", stdout);
 
-    string main_string;
-    cin >> main_string;
+    string m_string;
+    cin >> m_string;
 
-    solve(main_string);
+    vector<pair<int, int>> cows(26, make_pair(-1, -1));
+    for (int i = 0; i < 52; i++) {
+        const char curr = m_string[i];
+        const int curr_value = curr-'A';
+        if (cows[curr_value].first == -1) {
+            cows[curr_value].first = i;
+        } else {
+            cows[curr_value].second = i;
+        }
+    }
+
+    int total_count = 0;
+    for (int i = 0; i < 26; i++) {
+        for (int x = i + 1; x < 26; x++) {
+            int first_count = 0;
+            int second_count = 0;
+
+            auto first_pair = cows[i];
+            auto second_pair = cows[x];
+
+            if (second_pair.first <= first_pair.first && first_pair.first <= second_pair.second) {
+                first_count++;
+            }
+            if (second_pair.first <= first_pair.second && first_pair.second <= second_pair.second) {
+                first_count++;
+            }
+            if (first_pair.first <= second_pair.first && second_pair.first <= first_pair.second) {
+                second_count++;
+            }
+            if (first_pair.first <= second_pair.second && second_pair.second <= first_pair.second) {
+                second_count++;
+            }
+
+            if (first_count == 1 && second_count == 1) {
+                total_count++;
+            }
+        }
+    }
+
+    cout << total_count << "\n";
 
     return 0;
 }

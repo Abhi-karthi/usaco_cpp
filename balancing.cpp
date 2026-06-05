@@ -1,35 +1,9 @@
 #include <iostream>
-#include <vector>
 #include <utility>
+#include <vector>
 #include <algorithm>
-using namespace std;
 
-void solve(int n, int b, std::vector<std::pair<int, int> > points) {
-    std::vector<int> maximi;
-    for (int x = 0; x < n; x++) {
-        for (int y = 0; y < n; y++) {
-            int x_value = points.at(x).first + 1;
-            int y_value = points.at(y).second + 1;
-            std::vector<int> quadrants(4);
-            for (int i = 0; i < points.size(); i++) {
-                if (points.at(i).first > x_value && points.at(i).second > y_value) quadrants.at(0)++;
-                else if (points.at(i).first > x_value && points.at(i).second < y_value) quadrants.at(1)++;
-                else if (points.at(i).first < x_value && points.at(i).second < y_value) quadrants.at(2)++;
-                else if (points.at(i).first < x_value && points.at(i).second > y_value) quadrants.at(3)++;
-            }
-            int current_maximum = -1;
-            for (int w = 0; w < 4; w++) {
-                if (quadrants.at(w) > current_maximum) {
-                    current_maximum = quadrants.at(w);
-                }
-            }
-            maximi.push_back(current_maximum);
-        }
-    }
-    std::vector<int>::iterator max_it = std::min_element(maximi.begin(), maximi.end());
-    int min_value = *max_it;
-    cout << min_value << "\n";
-}
+using namespace std;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -40,12 +14,37 @@ int main() {
 
     int n, b;
     cin >> n >> b;
-    std::vector<std::pair<int, int> > points(n);
+
+    vector<pair<int, int>> cows(n);
+    vector<int> x_values;
+    vector<int> y_values;
+
     for (int i = 0; i < n; i++) {
-        cin >> points.at(i).first >> points.at(i).second;
+        cin >> cows[i].first >> cows[i].second;
+        x_values.push_back(cows[i].first+1);
+        y_values.push_back(cows[i].second+1);
     }
 
-    solve(n, b, points);
+    int least_section = 101;
+    for (auto x : x_values) {
+        for (auto y : y_values) {
+            vector<int> quadrants(4);
+            for (auto i : cows) {
+                if (i.first > x && i.second > y) {
+                    quadrants[0]++;
+                } else if (i.first > x && i.second < y) {
+                    quadrants[1]++;
+                } else if (i.first < x && i.second > y) {
+                    quadrants[2]++;
+                } else if (i.first < x && i.second < y) {
+                    quadrants[3]++;
+                }
+            }
+            least_section = min(least_section, max(max(quadrants[0], quadrants[1]), max(quadrants[2], quadrants[3])));
+        }
+    }
+
+    cout << least_section << "\n";
 
     return 0;
 }
